@@ -1,11 +1,24 @@
-products = [] #大清單
+# 讀取檔案
+products = [] # 大清單
+with open('products.csv', 'r', encoding = 'utf-8') as f:
+    for line in f:
+        if '商品,價格' in line:
+            continue # 跳到下一迴
+            # continue 和 break 一樣只能寫在迴圈
+        name, price = line.strip().split(',')
+        # strip() 去掉換行符號
+        # split 切割
+        products.append([name, price])
+
+print(products)
+
 while True:
     name = input('請輸入商品名稱：')
-    if name == 'q': #quit
+    if name == 'q': # quit
         break
     price = input('請輸入商品價格：')
     price = int(price)
-    products.append([name, price]) #小清單裝進大清單
+    products.append([name, price]) # 小清單裝進大清單
 print(products)
 
 for p in products:
@@ -15,5 +28,6 @@ with open('products.csv', 'w', encoding = 'utf-8') as f:
     f.write('商品,價格\n')
     for p in products:
         f.write(p[0] + ',' + str(p[1]) + '\n')
-        #價格要從整數再轉成字串str()
+        # 價格要從整數再轉成字串 str()
+
 
