@@ -1,15 +1,21 @@
-# 讀取檔案
-products = [] # 大清單
-with open('products.csv', 'r', encoding = 'utf-8') as f:
-    for line in f:
-        if '商品,價格' in line:
-            continue # 跳到下一迴
-            # continue 和 break 一樣只能寫在迴圈
-        name, price = line.strip().split(',')
-        # strip() 去掉換行符號
-        # split 切割
-        products.append([name, price])
-print(products)
+import os # operating system
+
+products = [] 
+if os.path.isfile('products.csv'):
+    print('已有檔案')
+    #讀取檔案
+    with open('products.csv', 'r', encoding = 'utf-8') as f:
+        for line in f:
+            if '商品,價格' in line:
+                continue # 跳到下一迴
+                # continue 和 break 一樣只能寫在迴圈
+            name, price = line.strip().split(',')
+            # strip() 去掉換行符號
+            # split 切割
+            products.append([name, price])
+    print(products)
+else:
+    print('找不到檔案')
 
 #讓使用者輸入
 while True:
